@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Home from './Home';
 
 class ShoppingCart extends Component {
   render() {
