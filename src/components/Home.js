@@ -25,7 +25,6 @@ class Home extends Component {
     const {
       results: searchResults,
     } = await getProductsFromCategoryAndQuery(category, input);
-    console.log(searchResults);
     this.setState({
       searchResults,
     });
