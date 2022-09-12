@@ -37,6 +37,24 @@ class Home extends Component {
     });
   };
 
+  // Gente, essa parte está certa, fiquem de olho no que está aparecendo no console.log
+  filterCategories = async ({ target }) => {
+    const url = `https://api.mercadolibre.com/sites/MLB/search?category=${target.id}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    // Já essa parte que está comentada eu não sei se está certa
+    // const categoriesItens = data.map((e) => (
+    //   <Products
+    //     data-testid="product"
+    //     key={ e.id }
+    //     name={ e.title }
+    //     img={ e.thumbnail }
+    //     price={ e.price }
+    //   />
+    // ));
+  };
+
   render() {
     const { productsList, searchResults } = this.state;
     return (
@@ -54,6 +72,29 @@ class Home extends Component {
         >
           Pesquisar
         </button>
+        <Link
+          data-testid="shopping-cart-button"
+          to="/shoppingCart"
+        >
+          {' '}
+          Carrinho de Compras
+
+        </Link>
+        {productsList.map((category) => (
+          <label
+            key={ category.id }
+            htmlFor={ category.id }
+            data-testid="category"
+          >
+            <input
+              type="radio"
+              id={ category.id }
+              // Esse onClick também está correto, creio eu, mas falta algo ainda
+              onClick={ this.filterCategories }
+            />
+            {category.name}
+          </label>
+        ))}
         {
           searchResults.length === 0 ? (<h3>Nenhum produto foi encontrado</h3>)
             : (searchResults
@@ -67,24 +108,6 @@ class Home extends Component {
                 />
               )))
         }
-        <Link
-          data-testid="shopping-cart-button"
-          to="/shoppingCart"
-        >
-          {' '}
-          Carrinho de Compras
-
-        </Link>
-        {productsList.map((category) => (
-          <label
-            key={ category.id }
-            htmlFor="radio-button"
-            data-testid="category"
-          >
-            <input type="radio" />
-            {category.name}
-          </label>
-        ))}
       </div>
     );
   }
