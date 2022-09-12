@@ -7,7 +7,7 @@ class Products extends Component {
     const { name, image, price, id } = this.props;
     return (
       <Link
-        to={ `/ProductsDetails/${id}` }
+        to={ `/ProductDetails/${id}` }
         data-testid="product-detail-link"
       >
         <div

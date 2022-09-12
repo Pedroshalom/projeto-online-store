@@ -22,7 +22,7 @@ function App() {
           />
           <Route
             exact
-            path="/ProductDetails"
+            path="/ProductDetails/:id"
             component={ ProductDetails }
           />
         </Switch>
