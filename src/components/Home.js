@@ -25,7 +25,6 @@ class Home extends Component {
     const {
       results: searchResults,
     } = await getProductsFromCategoryAndQuery(category, input);
-    console.log(searchResults);
     this.setState({
       searchResults,
     });
@@ -91,10 +90,11 @@ class Home extends Component {
             : (searchResults
               .map((product) => (
                 <Products
-                  data-testid="product"
+                  // data-testid="product"
                   key={ product.id }
+                  id={ product.id }
                   name={ product.title }
-                  img={ product.thumbnail }
+                  image={ product.thumbnail }
                   price={ product.price }
                 />
               )))
