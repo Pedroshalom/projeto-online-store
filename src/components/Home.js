@@ -9,6 +9,7 @@ class Home extends Component {
     input: '',
     productsList: [],
     searchResults: [],
+    cartItems: [],
   };
 
   componentDidMount() {
