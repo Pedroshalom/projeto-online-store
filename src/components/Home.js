@@ -52,10 +52,22 @@ class Home extends Component {
     // const product = this.cartItem(target.name);
     // setLocalProducts('produtos', [...storage, product]);
     product.quantity = 1;
-    const readProduct = readItens();
-    console.log(readProduct);
+    const xablau = readItens() || [];
+    if (xablau.some((element) => element.id === product.id)) {
+      const xablau2 = xablau.map((element) => {
+        if (element.id === product.id) {
+          element.quantity += 1;
+        }
+        return element;
+      });
+      saveItens(xablau2);
+    } else {
+      saveItens([...xablau, product]);
+    }
+    // verificar se existe o produto
+    // se existir, atualiza o q já existe, caso n add um novo
+    console.log(xablau);
     console.log(product);
-    saveItens([...readProduct, product]);
   };
 
   render() {
