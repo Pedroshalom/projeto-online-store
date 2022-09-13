@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import { saveItens, readItens, getCategories,
+  getProductsFromCategoryAndQuery } from '../services/api';
 import Products from './Products';
 
 class Home extends Component {
@@ -43,7 +44,18 @@ class Home extends Component {
     this.setState({
       searchResults: data.results,
     });
-    console.log(data);
+    // console.log(data);
+  };
+
+  saveLocalStorage = (product) => {
+    // const storage = localStorage.setItem('keyItemName', value) || [];
+    // const product = this.cartItem(target.name);
+    // setLocalProducts('produtos', [...storage, product]);
+    product.quantity = 1;
+    const readProduct = readItens();
+    console.log(readProduct);
+    console.log(product);
+    saveItens([...readProduct, product]);
   };
 
   render() {
@@ -89,14 +101,23 @@ class Home extends Component {
           searchResults.length === 0 ? (<h3>Nenhum produto foi encontrado</h3>)
             : (searchResults
               .map((product) => (
-                <Products
+                <>
+                  <Products
                   // data-testid="product"
-                  key={ product.id }
-                  id={ product.id }
-                  name={ product.title }
-                  image={ product.thumbnail }
-                  price={ product.price }
-                />
+                    key={ product.id }
+                    id={ product.id }
+                    name={ product.title }
+                    image={ product.thumbnail }
+                    price={ product.price }
+                  />
+                  <button
+                    type="button"
+                    data-testid="product-add-to-cart"
+                    onClick={ () => this.saveLocalStorage(product) }
+                  >
+                    Adicionar ao carrinho
+                  </button>
+                </>
               )))
         }
       </div>
