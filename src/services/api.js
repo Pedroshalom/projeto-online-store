@@ -18,3 +18,11 @@ export async function getProductById(id) {
   // Esta implementação específica não é avaliada, mas pode ajudar você 🙂
   // Atenção: essa função não deverá ser chamada na tela do carrinho de compras.
 }
+
+export function saveItens(product) {
+  localStorage.setItem('cartItem', JSON.stringify(product));
+}
+
+export function readItens() {
+  return JSON.parse(localStorage.getItem('cartItem'));
+}
