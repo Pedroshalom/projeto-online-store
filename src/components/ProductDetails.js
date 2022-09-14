@@ -66,7 +66,6 @@ class ProductDetails extends Component {
     );
   }
 }
-
 ProductDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -74,5 +73,4 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
 };
-
 export default ProductDetails;
