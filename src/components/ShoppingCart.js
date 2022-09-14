@@ -16,7 +16,7 @@ class ShoppingCart extends Component {
     return (
       <div>
 
-        { !cartItems.length
+        { !cartItems
           ? (
             <p data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
