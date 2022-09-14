@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getProductById } from '../services/api';
+import { saveItens, readItens, getProductById } from '../services/api';
 
 class ProductDetails extends Component {
   state = {
@@ -21,6 +21,24 @@ class ProductDetails extends Component {
     });
   };
 
+  saveLocalStorage = (product) => {
+    product.quantity = 1;
+    const shoppingCart = readItens() || [];
+    if (shoppingCart.some((element) => element.id === product.id)) {
+      const shoppingCart2 = shoppingCart.map((element) => {
+        if (element.id === product.id) {
+          element.quantity += 1;
+        }
+        return element;
+      });
+      saveItens(shoppingCart2);
+    } else {
+      saveItens([...shoppingCart, product]);
+    }
+    // console.log(shoppingCart);
+    // console.log(shoppingCart2);
+  };
+
   render() {
     const { productsList: { title, price, thumbnail } } = this.state;
     return (
@@ -33,6 +51,13 @@ class ProductDetails extends Component {
             alt={ title }
           />
           <p data-testid="product-detail-price">{`Preço: ${price}`}</p>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => this.saveLocalStorage(product) }
+          >
+            Adicionar ao carrinho
+          </button>
         </div>
         <Link to="/ShoppingCart" data-testid="shopping-cart-button">
           Voltar para carrinho

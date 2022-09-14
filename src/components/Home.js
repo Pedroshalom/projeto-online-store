@@ -44,6 +44,7 @@ class Home extends Component {
     this.setState({
       searchResults: data.results,
     });
+    // console.log(data);
   };
 
   saveLocalStorage = (product) => {
@@ -60,8 +61,8 @@ class Home extends Component {
     } else {
       saveItens([...shoppingCart, product]);
     }
-    // console.log(xablau);
-    // console.log(product);
+    // console.log(shoppingCart);
+    // console.log(shoppingCart2);
   };
 
   render() {
@@ -87,7 +88,6 @@ class Home extends Component {
         >
           {' '}
           Carrinho de Compras
-
         </Link>
         {productsList.map((category) => (
           <label
@@ -130,5 +130,4 @@ class Home extends Component {
     );
   }
 }
-
 export default Home;
