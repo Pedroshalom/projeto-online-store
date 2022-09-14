@@ -8,7 +8,7 @@ class ShoppingCart extends Component {
 
   componentDidMount() {
     const request = readItens();
-    this.setState({ cartItems: request });
+    this.setState({ cartItems: request || [] });
   }
 
   render() {
