@@ -20,15 +20,6 @@ class Products extends Component {
           <h4>
             { price }
           </h4>
-          <Link to="/shoppingCart">
-            <button
-              type="button"
-              data-testid="product-add-to-cart"
-              // onClick={ this.addToCartButton }
-            >
-              Adicionar ao carrinho
-            </button>
-          </Link>
         </div>
       </Link>
     );

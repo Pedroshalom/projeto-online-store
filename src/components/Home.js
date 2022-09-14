@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import { saveItens, readItens, getCategories,
+  getProductsFromCategoryAndQuery } from '../services/api';
 import Products from './Products';
 
 class Home extends Component {
@@ -9,7 +10,6 @@ class Home extends Component {
     input: '',
     productsList: [],
     searchResults: [],
-    cartItems: [],
   };
 
   componentDidMount() {
@@ -44,7 +44,24 @@ class Home extends Component {
     this.setState({
       searchResults: data.results,
     });
-    console.log(data);
+  };
+
+  saveLocalStorage = (product) => {
+    product.quantity = 1;
+    const shoppingCart = readItens() || [];
+    if (shoppingCart.some((element) => element.id === product.id)) {
+      const shoppingCart2 = shoppingCart.map((element) => {
+        if (element.id === product.id) {
+          element.quantity += 1;
+        }
+        return element;
+      });
+      saveItens(shoppingCart2);
+    } else {
+      saveItens([...shoppingCart, product]);
+    }
+    // console.log(xablau);
+    // console.log(product);
   };
 
   render() {
@@ -90,14 +107,23 @@ class Home extends Component {
           searchResults.length === 0 ? (<h3>Nenhum produto foi encontrado</h3>)
             : (searchResults
               .map((product) => (
-                <Products
+                <>
+                  <Products
                   // data-testid="product"
-                  key={ product.id }
-                  id={ product.id }
-                  name={ product.title }
-                  image={ product.thumbnail }
-                  price={ product.price }
-                />
+                    key={ product.id }
+                    id={ product.id }
+                    name={ product.title }
+                    image={ product.thumbnail }
+                    price={ product.price }
+                  />
+                  <button
+                    type="button"
+                    data-testid="product-add-to-cart"
+                    onClick={ () => this.saveLocalStorage(product) }
+                  >
+                    Adicionar ao carrinho
+                  </button>
+                </>
               )))
         }
       </div>
