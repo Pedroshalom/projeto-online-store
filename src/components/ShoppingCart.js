@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { readItens } from '../services/api';
+
 class ShoppingCart extends Component {
   state = {
     cartItems: [],
   };
+
   componentDidMount() {
     const request = readItens();
     this.setState({ cartItems: request });
   }
+
   render() {
     const { cartItems } = this.state;
     return (
