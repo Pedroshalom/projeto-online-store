@@ -15,26 +15,18 @@ class ShoppingCart extends Component {
     const { cartItems } = this.state;
     return (
       <div>
-
-        { !cartItems
-          ? (
+        { cartItems.length
+          ? cartItems.map((e) => (
+            <div key={ e.id }>
+              <h3 data-testid="shopping-cart-product-name">{e.title}</h3>
+              <h4>{e.price}</h4>
+              <h4 data-testid="shopping-cart-product-quantity">{e.quantity}</h4>
+            </div>
+          ))
+          : (
             <p data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
-            </p>)
-          : (
-            <div>
-              {
-                cartItems.map((e) => (
-
-                  <div key={ e.id }>
-                    <h3 data-testid="shopping-cart-product-name">{e.title}</h3>
-                    <h4>{e.price}</h4>
-                    <h4 data-testid="shopping-cart-product-quantity">{e.quantity}</h4>
-                  </div>
-                ))
-              }
-            </div>
-          )}
+            </p>)}
       </div>
     );
   }
