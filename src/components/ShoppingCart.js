@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { saveItens, readItens } from '../services/api';
-import { readItens } from '../services/api';
 
 class ShoppingCart extends Component {
   state = {
@@ -11,7 +10,6 @@ class ShoppingCart extends Component {
     const request = readItens();
     this.setState({ cartItems: request || [] });
   }
-
 
   incrementQuantity = (productId) => {
     const items = readItens();
