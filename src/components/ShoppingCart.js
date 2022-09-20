@@ -81,7 +81,6 @@ class ShoppingCart extends Component {
                 Remover do Carrinho
 
               </button>
-              <h4 data-testid="shopping-cart-product-quantity">{e.quantity}</h4>
 
             </div>
           ))
