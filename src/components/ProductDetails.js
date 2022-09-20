@@ -40,7 +40,7 @@ class ProductDetails extends Component {
   };
 
   render() {
-    const { productsList: { title, price, thumbnail } } = this.state;
+    const { productsList: { title, price, thumbnail }, productsList } = this.state;
     return (
       <>
         <div data-testid="product">
@@ -51,22 +51,21 @@ class ProductDetails extends Component {
             alt={ title }
           />
           <p data-testid="product-detail-price">{`Preço: ${price}`}</p>
-          <button
-            type="button"
-            data-testid="product-detail-add-to-cart"
-            onClick={ () => this.saveLocalStorage(product) }
-          >
-            Adicionar ao carrinho
-          </button>
         </div>
         <Link to="/ShoppingCart" data-testid="shopping-cart-button">
           Voltar para carrinho
         </Link>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => this.saveLocalStorage(productsList) }
+        >
+          Adicionar ao carrinho
+        </button>
       </>
     );
   }
 }
-
 ProductDetails.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -74,5 +73,4 @@ ProductDetails.propTypes = {
     }).isRequired,
   }).isRequired,
 };
-
 export default ProductDetails;
