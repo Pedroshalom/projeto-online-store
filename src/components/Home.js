@@ -44,7 +44,6 @@ class Home extends Component {
     this.setState({
       searchResults: data.results,
     });
-    // console.log(data);
   };
 
   saveLocalStorage = (product) => {
