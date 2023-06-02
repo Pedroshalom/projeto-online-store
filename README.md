@@ -2,12 +2,19 @@
 
  Projeto que simula Uma loja online que utiliza a Api do Mercado Livre para realizar a busca de produtos.
 
-## <h1>Instalando o projeto</h1>
-<details>
-  <summary>Como instalar o projeto</summary>
+<h3>Como rodar:</h3>
 
-  - Clone o projeto desse repositório para sua máquina;
-  - Instale as dependências com o comando ```npm install```;
-  - Rode o projeto com o comando ```npm start```;
+```
 
-</details>
+## Clone o repositório
+git clone https://github.com/Pedroshalom/projeto-online-store/
+
+## Encontre o diretório
+cd projeto-online-store
+
+## Instale as depedências
+npm install
+
+## Rode o projeto
+npm start
+
